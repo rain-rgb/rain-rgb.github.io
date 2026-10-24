@@ -179,6 +179,7 @@
   /* 技术栈 */
   .stack{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   .stack-cell{background:var(--card);padding:24px 22px}
+  .stack-cell.wide{grid-column:1 / -1;background:linear-gradient(90deg,var(--card-hi),var(--card))}
   .stack-cell h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
   .pills{display:flex;flex-wrap:wrap;gap:7px}
   .pill{
@@ -372,6 +373,7 @@
         <div class="reveal">
           <p>我做的事集中在一条链路上：把平台侧的订单、库存和内容拉回来，在系统里算清楚，再以商家能看懂的方式呈现出去。这条链路横跨开放平台对接、业务建模、异步调度和前端交付，正好是<b>全栈</b>最能发挥的地方。</p>
           <p>日常写 Java 与 Spring Boot，也写 Vue 3。业务模块多、平台差异大，所以更在意<strong>边界是否清楚</strong>：哪些字段由平台决定、哪些由本地兜底、失败之后如何重放。业余用 Python 做采集器与写作内核，习惯先把状态落到库里，再谈界面。</p>
+          <p>初中开始写代码，至今没断过。近两年把 AI 辅助开发用成了默认手段：<b>Agent CLI、MCP、Skill、Hook</b> 不是尝鲜，而是写代码、查文档、跑批量任务时的日常工具。</p>
         </div>
         <ul class="focus reveal">
           <li><b>多平台开放接口对接</b>SHEIN、Shopee、TikTok Shop / Business、Mercado Libre、Temu、Kaufland、淘宝开放平台、聚水潭，统一授权、限流与错误重试。</li>
@@ -409,6 +411,14 @@
             <span class="pill key">Vue 3</span><span class="pill key">TypeScript</span><span class="pill">Vite</span>
             <span class="pill">Element Plus</span><span class="pill">Pinia</span><span class="pill">Vue Router</span>
             <span class="pill">ECharts</span><span class="pill">UnoCSS</span><span class="pill">Storybook</span><span class="pill">Cypress</span>
+          </div>
+        </div>
+        <div class="stack-cell wide">
+          <h4>AI &amp; Agent Engineering</h4>
+          <div class="pills">
+            <span class="pill key">Vibe Coding</span><span class="pill key">Agent CLI</span>
+            <span class="pill">MCP</span><span class="pill">Skill</span><span class="pill">Hook</span>
+            <span class="pill">上下文工程</span><span class="pill">Prompt 设计</span><span class="pill">多模态调用</span>
           </div>
         </div>
         <div class="stack-cell">
@@ -458,10 +468,10 @@
             <span class="job-org">某政务信息化企业</span>
             <span class="job-date">2025.03 — 2025.07</span>
           </div>
-          <div class="job-sub">大四实习 · 大型政府工程管理系统 · 人员考勤 / 物流调度 / 审批安排</div>
+          <div class="job-sub">大四实习 · 全国基建维护管理系统 · 人员考勤 / 物流调度 / 审批安排</div>
           <ul>
             <li><b>前端为主</b>：负责系统页面的开发与维护，包括列表、表单与交互实现，以及与后端接口的联调。</li>
-            <li><b>业务模块</b>：参与人员考勤、物流调度与审批安排三类模块的迭代。</li>
+            <li><b>业务场景</b>：铁路、桥梁等基础设施的全国性维护管理，业务覆盖多个省份。</li>
             <li><b>后端配合</b>：偶尔编写后端脚本处理数据与接口；项目为 Java 技术栈，与现职所用一致。</li>
           </ul>
         </div>
@@ -564,6 +574,13 @@
       <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">荣誉与证书</h2><span class="sec-rule"></span></div>
       <div class="honors reveal">
         <div class="honor">
+          <span class="y">2025</span>
+          <div>
+            <b>优秀毕业生</b>
+            <span>浙江水利水电学院 · 在校成绩优异</span>
+          </div>
+        </div>
+        <div class="honor">
           <span class="y">2023</span>
           <div>
             <b>第十八届全国大学生智能汽车竞赛 · 全国总决赛 室外 ROS 无人车竞速赛 三等奖</b>
@@ -603,7 +620,7 @@
         <span class="school">浙江水利水电学院</span>
         <span class="major">物联网工程 · 工学学士</span>
         <span class="date">2021.09 — 2025.06</span>
-        <div class="note">毕业设计《基于 ZigBee 的娱乐照明系统的设计与实现》，覆盖嵌入式组网、传感器融合与云平台接入。在校期间以 C 语言与单片机为主，参加过全国大学生智能汽车竞赛（ROS 无人车），毕业后转向 Java 与 Web 全栈。</div>
+        <div class="note">毕业设计《基于 ZigBee 的娱乐照明系统的设计与实现》，覆盖嵌入式组网、传感器融合与云平台接入。在校成绩优异，获优秀毕业生；参加过网络安全社团与 CTF 竞赛，以及全国大学生智能汽车竞赛（ROS 无人车）。毕业后转向 Java 与 Web 全栈。</div>
       </div>
     </div>
   </section>
