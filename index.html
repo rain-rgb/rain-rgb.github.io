@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>杜兴雨 · 全栈开发工程师</title>
+<meta name="description" content="杜兴雨，全栈开发工程师。跨境电商 ERP 平台开发：Java 与 Spring Boot 后端、Vue 3 前端，兼做 Python 数据采集与 AI 工具。">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="杜兴雨 · 全栈开发工程师">
+<meta property="og:description" content="跨境电商 ERP 全栈开发：多平台订单、库存与结算链路，Vue 3 管理端，Python 采集与自动化。">
+<meta name="theme-color" content="#0a0d12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0d12'/%3E%3Ctext x='16' y='22' font-size='16' font-family='monospace' fill='%232dd4bf' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --bg:#0a0d12;
+    --bg-soft:#0e1219;
+    --card:#11161f;
+    --card-hi:#151b26;
+    --line:#1e2530;
+    --line-soft:#161c25;
+    --text:#e8ecf3;
+    --text-dim:#b3bdcc;
+    --muted:#8592a6;
+    --accent:#2dd4bf;
+    --accent-dim:rgba(45,212,191,.12);
+    --blue:#7aa2f7;
+    --radius:14px;
+    --mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  html[data-theme="light"]{
+    --bg:#f8f9fb;
+    --bg-soft:#ffffff;
+    --card:#ffffff;
+    --card-hi:#ffffff;
+    --line:#e2e7ef;
+    --line-soft:#edf0f5;
+    --text:#111722;
+    --text-dim:#3b4557;
+    --muted:#647084;
+    --accent:#0d7f74;
+    --accent-dim:rgba(13,127,116,.08);
+    --blue:#2f5fd0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--bg)}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 28px}
+
+  /* ---------- 背景 ---------- */
+  .bg-grid{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 20%,transparent 78%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 20%,transparent 78%);
+    opacity:.55;
+  }
+  .bg-glow{
+    position:fixed;top:-380px;left:50%;transform:translateX(-50%);
+    width:900px;height:620px;z-index:0;pointer-events:none;
+    background:radial-gradient(circle,var(--accent-dim) 0%,transparent 62%);
+    filter:blur(30px);
+  }
+
+  /* ---------- 导航 ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:color-mix(in srgb,var(--bg) 82%,transparent);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.02em}
+  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim)}
+  .brand .sub{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a{font-size:13.5px;color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .theme-btn{
+    display:grid;place-items:center;width:34px;height:34px;border-radius:9px;
+    border:1px solid var(--line);background:transparent;color:var(--muted);
+    cursor:pointer;transition:.2s;
+  }
+  .theme-btn:hover{color:var(--text);border-color:var(--muted)}
+  .theme-btn svg{width:15px;height:15px}
+  html[data-theme="dark"] .i-sun{display:block}
+  html[data-theme="dark"] .i-moon{display:none}
+  html[data-theme="light"] .i-sun{display:none}
+  html[data-theme="light"] .i-moon{display:block}
+
+  /* ---------- 首屏 ---------- */
+  .hero{position:relative;z-index:1;padding:88px 0 48px}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.6}
+  h1{
+    font-size:clamp(2.5rem,6vw,3.9rem);
+    line-height:1.1;letter-spacing:-.02em;font-weight:700;margin-bottom:10px;
+  }
+  h1 .latin{
+    display:block;font-family:var(--mono);font-size:clamp(.8rem,1.6vw,.95rem);
+    font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+    margin-top:16px;
+  }
+  .lead{font-size:16.5px;color:var(--text-dim);max-width:34em;margin-top:26px}
+  .lead b{color:var(--text);font-weight:600}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:10px;font-size:14px;font-weight:500;
+    border:1px solid var(--line);color:var(--text-dim);
+    transition:.22s;background:var(--card);
+  }
+  .btn:hover{border-color:var(--accent);color:var(--text);transform:translateY(-1px)}
+  .btn.primary{background:var(--accent);color:#04120f;border-color:var(--accent);font-weight:600}
+  .btn.primary:hover{box-shadow:0 8px 26px -10px var(--accent);color:#04120f}
+  html[data-theme="light"] .btn.primary{color:#fff}
+  html[data-theme="light"] .btn.primary:hover{color:#fff}
+  .btn svg{width:14px;height:14px;opacity:.85}
+
+  /* 资料卡 */
+  .idcard{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:linear-gradient(180deg,var(--card-hi),var(--card));
+    padding:6px 0;overflow:hidden;position:relative;
+  }
+  .idcard::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--accent),transparent 70%);opacity:.7;
+  }
+  .idcard .row{display:flex;justify-content:space-between;gap:16px;padding:13px 20px;border-bottom:1px solid var(--line-soft);font-size:13.5px}
+  .idcard .row:last-child{border-bottom:0}
+  .idcard .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px;white-space:nowrap}
+  .idcard .v{text-align:right;color:var(--text-dim)}
+  .idcard .v b{color:var(--text);font-weight:600}
+
+  /* ---------- 通用区块 ---------- */
+  section{position:relative;z-index:1}
+  .sec{padding:78px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px}
+  .sec-num{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.1em;padding-bottom:4px}
+  .sec-title{font-size:22px;font-weight:650;letter-spacing:-.01em}
+  .sec-rule{flex:1;height:1px;background:var(--line);margin-bottom:6px}
+
+  /* 数据条 */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:8px}
+  .stat{background:var(--card);padding:22px 20px}
+  .stat .n{font-size:26px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .stat .n span{font-size:14px;color:var(--accent);font-weight:500;margin-left:2px}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* 关于 */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+  .about p{color:var(--text-dim);font-size:15px;margin-bottom:16px}
+  .about p:last-child{margin-bottom:0}
+  .about strong{color:var(--text);font-weight:600}
+  .focus{list-style:none;border-left:1px solid var(--line);padding-left:0}
+  .focus li{position:relative;padding:0 0 20px 22px;font-size:14.5px;color:var(--text-dim)}
+  .focus li:last-child{padding-bottom:0}
+  .focus li::before{content:"";position:absolute;left:-4px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim)}
+  .focus b{display:block;color:var(--text);font-weight:600;font-size:15px;margin-bottom:2px}
+
+  /* 技术栈 */
+  .stack{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .stack-cell{background:var(--card);padding:24px 22px}
+  .stack-cell h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+  .pills{display:flex;flex-wrap:wrap;gap:7px}
+  .pill{
+    font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:6px;
+    background:var(--bg-soft);border:1px solid var(--line-soft);color:var(--text-dim);
+  }
+  .pill.key{border-color:color-mix(in srgb,var(--accent) 34%,transparent);color:var(--accent);background:var(--accent-dim)}
+
+  /* 经历 */
+  .timeline{position:relative;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+  .job{position:relative;padding-bottom:8px}
+  .job::before{content:"";position:absolute;left:-26px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+  .job-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:2px}
+  .job-title{font-size:17px;font-weight:650}
+  .job-org{color:var(--accent);font-size:14px;font-weight:500}
+  .job-date{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto}
+  .job-sub{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+  .job ul{list-style:none;display:grid;gap:10px}
+  .job li{position:relative;padding-left:18px;font-size:14.5px;color:var(--text-dim)}
+  .job li::before{content:"—";position:absolute;left:0;color:var(--accent);opacity:.7}
+  .job li b{color:var(--text);font-weight:600}
+
+  /* 项目 */
+  .projects{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .proj{
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--card);
+    padding:26px 24px;transition:.25s;display:flex;flex-direction:column;position:relative;overflow:hidden;
+  }
+  .proj:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));transform:translateY(-3px);background:var(--card-hi)}
+  .proj.wide{grid-column:1 / -1}
+  .proj-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:6px}
+  .proj h3{font-size:17px;font-weight:650;letter-spacing:-.01em}
+  .proj .tag-kind{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);padding:3px 8px;border-radius:5px;white-space:nowrap;
+  }
+  .proj.wide .tag-kind{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 34%,transparent)}
+  .proj .desc{font-size:14.5px;color:var(--text-dim);margin:10px 0 16px}
+  .proj ul{list-style:none;display:grid;gap:8px;margin-bottom:18px}
+  .proj li{position:relative;padding-left:16px;font-size:13.8px;color:var(--muted);line-height:1.65}
+  .proj li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.6}
+  .proj .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .proj .tags span{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line-soft);padding:2px 8px;border-radius:4px}
+  .proj.wide{display:grid;grid-template-columns:1.05fr .95fr;gap:36px}
+  .proj.wide .col-r{display:flex;flex-direction:column}
+
+  /* 教育 */
+  .edu{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+  .edu .school{font-size:16px;font-weight:650}
+  .edu .major{font-size:14px;color:var(--text-dim)}
+  .edu .date{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto}
+  .edu .note{width:100%;font-size:13.5px;color:var(--muted);margin-top:6px;padding-top:14px;border-top:1px solid var(--line-soft)}
+
+  /* 联系 */
+  .contact{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:linear-gradient(160deg,var(--card-hi),var(--card));
+    padding:44px 40px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+  }
+  .contact h2{font-size:24px;font-weight:650;letter-spacing:-.01em;margin-bottom:8px}
+  .contact p{font-size:14.5px;color:var(--muted);max-width:32em}
+  .mail{
+    display:inline-flex;align-items:center;gap:10px;margin-top:20px;
+    font-family:var(--mono);font-size:15px;color:var(--accent);
+    border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent);padding-bottom:2px;
+  }
+  .mail:hover{color:var(--text);border-color:var(--text)}
+  .contact-links{display:flex;flex-direction:column;gap:10px}
+  .clink{
+    display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--text-dim);
+    border:1px solid var(--line);border-radius:9px;padding:10px 16px;background:var(--bg-soft);transition:.2s;
+  }
+  .clink:hover{border-color:var(--accent);color:var(--text)}
+  .clink svg{width:15px;height:15px;color:var(--muted)}
+  .clink:hover svg{color:var(--accent)}
+
+  footer{border-top:1px solid var(--line-soft);margin-top:70px;padding:26px 0 34px;position:relative;z-index:1}
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+  /* 动画：仅在 JS 可用时隐藏，禁用脚本仍可读全量内容 */
+  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .js .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* 响应式 */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:minmax(0,1fr);gap:38px}
+    .about{grid-template-columns:minmax(0,1fr);gap:28px}
+    .projects{grid-template-columns:minmax(0,1fr)}
+    .proj.wide{grid-template-columns:minmax(0,1fr);gap:0}
+    .contact{grid-template-columns:minmax(0,1fr);padding:32px 26px}
+    .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .stack{grid-template-columns:minmax(0,1fr)}
+  }
+  .hero-grid>*,.about>*,.proj>*,.contact>*{min-width:0}
+  @media (max-width:640px){
+    .wrap{padding:0 18px}
+    .brand .sub{display:none}
+    .nav-links{gap:13px;flex-shrink:0}
+    .nav-links a{font-size:12.5px}
+    .nav-links a[data-hide]{display:none}
+    .hero{padding:64px 0 48px}
+    .sec{padding:56px 0}
+    .job-date{margin-left:0;width:100%}
+    .idcard .row{flex-wrap:wrap;gap:2px}
+    .idcard .v{text-align:left}
+    .sec-title{font-size:20px}
+  }
+
+  /* 打印 */
+  @media print{
+    html,html[data-theme="dark"]{--bg:#fff;--bg-soft:#fff;--card:#fff;--card-hi:#fff;--line:#d8dde6;--line-soft:#e8ecf2;--text:#000;--text-dim:#222;--muted:#555;--accent:#0d7f74;--accent-dim:#fff}
+    .bg-grid,.bg-glow,.nav,.theme-btn,.actions{display:none!important}
+    body{font-size:11.5pt}
+    .sec{padding:22px 0}
+    .hero{padding:0 0 18px}
+    .proj,.stat,.stack-cell,.edu,.contact{break-inside:avoid}
+    .reveal{opacity:1!important;transform:none!important}
+    a{color:#000}
+  }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <div class="brand"><span class="dot"></span><span>杜兴雨</span><span class="sub">Full-Stack</span></div>
+    <nav class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#stack" data-hide>技术栈</a>
+      <a href="#work">经历</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+      <button class="theme-btn" id="themeBtn" aria-label="切换主题">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">全栈开发 · 跨境电商 ERP</div>
+        <h1>杜兴雨<span class="latin">Xingyu Du</span></h1>
+        <p class="lead">
+          全栈开发工程师，主攻跨境电商 ERP。后端以 <b>Java 与 Spring Boot</b> 承接多平台订单、库存与结算，
+          前端以 <b>Vue 3</b> 把这些链路交付成可用的管理界面，并用 <b>Python</b> 处理采集、报表与自动化。
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">查看项目<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn" href="#contact">联系我</a>
+        </div>
+      </div>
+      <aside class="idcard reveal">
+        <div class="row"><span class="k">Role</span><span class="v"><b>全栈开发工程师</b></span></div>
+        <div class="row"><span class="k">Focus</span><span class="v">跨境电商 SaaS · 业财一体化</span></div>
+        <div class="row"><span class="k">Stack</span><span class="v">Java · Spring Boot · Vue 3 · Python</span></div>
+        <div class="row"><span class="k">Edu</span><span class="v">物联网工程 · 本科</span></div>
+        <div class="row"><span class="k">Base</span><span class="v">浙江</span></div>
+        <div class="row"><span class="k">Mail</span><span class="v">2762362206@qq.com</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">关于</h2><span class="sec-rule"></span></div>
+      <div class="about">
+        <div class="reveal">
+          <p>我做的事集中在一条链路上：把平台侧的订单、库存和内容拉回来，在系统里算清楚，再以商家能看懂的方式呈现出去。这条链路横跨开放平台对接、业务建模、异步调度和前端交付，正好是<b>全栈</b>最能发挥的地方。</p>
+          <p>日常写 Java 与 Spring Boot，也写 Vue 3。业务模块多、平台差异大，所以更在意<strong>边界是否清楚</strong>：哪些字段由平台决定、哪些由本地兜底、失败之后如何重放。业余用 Python 做采集器与写作内核，习惯先把状态落到库里，再谈界面。</p>
+        </div>
+        <ul class="focus reveal">
+          <li><b>多平台开放接口对接</b>SHEIN、Shopee、TikTok Shop / Business、Mercado Libre、Temu、Kaufland、淘宝开放平台、聚水潭，统一授权、限流与错误重试。</li>
+          <li><b>业务链路落地</b>商品发布、库存池、达人联盟、素材计费，从表结构到接口到页面一次做完。</li>
+          <li><b>数据采集与自动化</b>Playwright 拦截、定时调度、本地优先缓冲，把人工操作换成可重跑的流程。</li>
+        </ul>
+      </div>
+
+      <div class="stats reveal" style="margin-top:44px">
+        <div class="stat"><div class="n">8<span>+</span></div><div class="l">已对接电商平台</div></div>
+        <div class="stat"><div class="n">16</div><div class="l">后端业务模块</div></div>
+        <div class="stat"><div class="n">3</div><div class="l">端 · 后台 / 门户 / 采集器</div></div>
+        <div class="stat"><div class="n">1<span>年+</span></div><div class="l">生产环境经验</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="sec" id="stack">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">技术栈</h2><span class="sec-rule"></span></div>
+      <div class="stack reveal">
+        <div class="stack-cell">
+          <h4>Backend</h4>
+          <div class="pills">
+            <span class="pill key">Java 25</span><span class="pill key">Spring Boot 4.x</span>
+            <span class="pill">MyBatis-Plus</span><span class="pill">MySQL</span><span class="pill">Redis</span>
+            <span class="pill">Maven 多模块</span><span class="pill">MapStruct</span><span class="pill">JSQLParser</span>
+            <span class="pill">OAuth 2.0</span><span class="pill">TTL 线程池</span><span class="pill">Spring @Async</span>
+          </div>
+        </div>
+        <div class="stack-cell">
+          <h4>Frontend</h4>
+          <div class="pills">
+            <span class="pill key">Vue 3</span><span class="pill key">TypeScript</span><span class="pill">Vite</span>
+            <span class="pill">Element Plus</span><span class="pill">Pinia</span><span class="pill">Vue Router</span>
+            <span class="pill">ECharts</span><span class="pill">UnoCSS</span><span class="pill">Storybook</span><span class="pill">Cypress</span>
+          </div>
+        </div>
+        <div class="stack-cell">
+          <h4>Data &amp; Automation</h4>
+          <div class="pills">
+            <span class="pill key">Python</span><span class="pill key">Playwright</span><span class="pill">FastAPI</span>
+            <span class="pill">APScheduler</span><span class="pill">SQLite / FTS5</span><span class="pill">Pandas</span>
+            <span class="pill">FFmpeg</span><span class="pill">Qwen-VL 视频理解</span><span class="pill">python-docx</span>
+          </div>
+        </div>
+        <div class="stack-cell">
+          <h4>Engineering</h4>
+          <div class="pills">
+            <span class="pill">Git / Gitea</span><span class="pill">Maven</span><span class="pill">pnpm</span>
+            <span class="pill">Pytest</span><span class="pill">Jest</span><span class="pill">Linux</span>
+            <span class="pill">文档快照治理</span><span class="pill">Code Review</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">工作经历</h2><span class="sec-rule"></span></div>
+      <div class="timeline reveal">
+        <div class="job">
+          <div class="job-top">
+            <span class="job-title">全栈开发工程师</span>
+            <span class="job-org">麦腾科技</span>
+            <span class="job-date">2025.07 — 至今</span>
+          </div>
+          <div class="job-sub">跨境电商 ERP / 业财一体化平台 · Java + Vue 双端</div>
+          <ul>
+            <li><b>平台对接层</b>：承接聚水潭开放平台集成，完成 OAuth 授权、消息回调与仓库绑定；重构库存池读取逻辑，改为按品牌仓写入并对本地实时可用量做缓存计算，避免逐条查询。</li>
+            <li><b>TikTok 达人联盟</b>：从表结构到页面交付达人广场、达人选品、定向邀约、公开计划与私信；把接口鉴权从角色硬编码改为细粒度权限，补齐样品规则与履约查询。</li>
+            <li><b>素材与视频工作台</b>：接入视频转存与视频理解并发调度，新增图片生成适配器与成本计费，统一素材来源类型与筛选查询。</li>
+            <li><b>商品发布链路</b>：处理重量、尺寸单位标准化与库存池校验，降低跨平台发布因单位差异导致的失败率。</li>
+            <li><b>工程治理</b>：维护 8 个平台官方文档的增量快照与索引，为对接与排障提供统一查阅入口；参与全局异步线程池（上下文透传、核心线程可回收）的落地与规范沉淀。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="sec" id="projects">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">代表项目</h2><span class="sec-rule"></span></div>
+      <div class="projects">
+
+        <article class="proj wide reveal">
+          <div>
+            <div class="proj-head">
+              <h3>跨境电商业财一体化平台</h3>
+              <span class="tag-kind">企业项目</span>
+            </div>
+            <p class="desc">面向多平台卖家的 ERP 与业财一体化系统。16 个 Maven 业务模块，覆盖商品、订单、支付、广告、素材、营销、利润与报表，前端为独立的 Vue 3 管理端。</p>
+            <div class="tags">
+              <span>Java 25</span><span>Spring Boot 4</span><span>MyBatis-Plus</span><span>MySQL</span><span>Redis</span><span>Vue 3</span><span>Element Plus</span>
+            </div>
+          </div>
+          <div class="col-r">
+            <ul>
+              <li>统一接入 SHEIN、Shopee、TikTok Shop、TikTok Business、Mercado Libre、Temu、Kaufland、淘宝开放平台，抽象授权、限流与出站请求记录。</li>
+              <li>聚水潭侧打通授权、回调与库存池，让采购与展架数据回流到门户，新旧两套系统共用一份采集结果。</li>
+              <li>异步任务统一走全局线程池，透传租户与登录上下文，低谷期回收核心线程，队列满时回落调用方执行。</li>
+              <li>报表与利润模块按平台、店铺、SKU 维度归集，供运营与财务对账。</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="proj reveal">
+          <div class="proj-head">
+            <h3>聚水潭展架采集器</h3>
+            <span class="tag-kind">个人项目</span>
+          </div>
+          <p class="desc">定时从聚水潭展架拉取款式、SKU 与供应商指标，先落本地 SQLite 再回灌线上 MySQL，供新旧两套门户同时展示。</p>
+          <ul>
+            <li>列表每 3 小时、详情每日 0 点、回灌每小时，三条车道独立互斥锁与独立浏览器 Profile，可并行不互堵。</li>
+            <li>本地优先缓冲：按天记录 pending / synced，MySQL 写失败不影响采集，恢复后自动补齐。</li>
+            <li>1688 账号池最多 3 个并行，Cookie 与 Profile 隔离，触发风控的账号独立冷却，其余账号继续跑。</li>
+            <li>列表与详情任务超时自动解僵，防止单任务卡死堵住整个调度。</li>
+          </ul>
+          <div class="tags"><span>Python</span><span>Playwright</span><span>FastAPI</span><span>APScheduler</span><span>SQLite</span><span>MySQL</span></div>
+        </article>
+
+        <article class="proj reveal">
+          <div class="proj-head">
+            <h3>Novel OS · 长篇写作内核</h3>
+            <span class="tag-kind">个人项目</span>
+          </div>
+          <p class="desc">以数据库为核心的长篇写作内核。计划只做到卷，一章一换会话，连续性交给库与简报，而不是靠上下文记忆。</p>
+          <ul>
+            <li>10 张表加一张 FTS5 全文索引：卷纲、章节、事件、人物、伏笔、设定与写作备忘。</li>
+            <li>进度卡机制：本章进度卡未提交，既不能过章，也不能开下一章。</li>
+            <li>修订走锚点补丁，锚点必须精确匹配指定次数；已通过的章节需先退回才能重写。</li>
+          </ul>
+          <div class="tags"><span>Python</span><span>SQLite</span><span>FTS5</span><span>CLI</span><span>Pytest</span></div>
+        </article>
+
+        <article class="proj reveal">
+          <div class="proj-head">
+            <h3>基于 ZigBee 的娱乐照明系统</h3>
+            <span class="tag-kind">本科毕业设计</span>
+          </div>
+          <p class="desc">面向娱乐场所的智能照明系统，按感知层、网络层、应用层三层组织，从硬件组网做到云端可视化。</p>
+          <ul>
+            <li>红外、超声波与光照三路传感器经 ZigBee 自组网上报协调器，串口交给 STM32 解析并按预设模式下发控制。</li>
+            <li>ESP8266 + MQTT 上阿里云，Web 与 App 双端可查可控，支持手动切换灯光模式。</li>
+            <li>实测无遮挡 30 m 稳定通信、丢包率约 1%；把上报间隔从 1 ms 放宽到 100 ms 后，连续 8 小时运行不被云端限流。</li>
+          </ul>
+          <div class="tags"><span>STM32</span><span>CC2530</span><span>ZigBee</span><span>ESP8266</span><span>MQTT</span><span>阿里云</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDU -->
+  <section class="sec" id="edu">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">教育背景</h2><span class="sec-rule"></span></div>
+      <div class="edu reveal">
+        <span class="school">浙江水利水电学院</span>
+        <span class="major">物联网工程 · 工学学士</span>
+        <span class="date">2021.09 — 2025.06</span>
+        <div class="note">毕业设计《基于 ZigBee 的娱乐照明系统的设计与实现》，覆盖嵌入式组网、传感器融合与云平台接入；在校期间以 C 语言与单片机为主，毕业后转向 Java 与 Web 全栈。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec" id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div>
+          <h2>聊一聊</h2>
+          <p>对跨境电商系统、平台对接或全栈开发有兴趣，欢迎直接来信。简历与更细的项目说明可以另外提供。</p>
+          <a class="mail" href="mailto:2762362206@qq.com">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            2762362206@qq.com
+          </a>
+        </div>
+        <div class="contact-links">
+          <a class="clink" href="https://github.com/rain-rgb" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.55v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .3.2.66.8.55A11.5 11.5 0 0 0 23.5 12A11.5 11.5 0 0 0 12 .5z"/></svg>
+            github.com/rain-rgb
+          </a>
+          <a class="clink" href="#top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            回到顶部
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> 杜兴雨 · Xingyu Du</span>
+    <span>本页为静态单页，无第三方脚本与统计</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e) {}
+  if (saved) { root.setAttribute('data-theme', saved); }
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e) {}
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.02, rootMargin: '0px 0px -30px 0px' });
+  items.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
