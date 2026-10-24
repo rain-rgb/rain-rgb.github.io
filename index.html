@@ -233,6 +233,14 @@
   .edu .date{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto}
   .edu .note{width:100%;font-size:13.5px;color:var(--muted);margin-top:6px;padding-top:14px;border-top:1px solid var(--line-soft)}
 
+  /* 荣誉 */
+  .honors{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden}
+  .honor{display:flex;gap:18px;padding:17px 22px;border-bottom:1px solid var(--line-soft)}
+  .honor:last-child{border-bottom:0}
+  .honor .y{font-family:var(--mono);font-size:11.5px;color:var(--accent);min-width:52px;padding-top:4px;letter-spacing:.02em}
+  .honor b{display:block;font-size:14.3px;font-weight:600;color:var(--text);line-height:1.55}
+  .honor span{display:block;font-size:12.6px;color:var(--muted);margin-top:3px}
+
   /* 联系 */
   .contact{
     border:1px solid var(--line);border-radius:var(--radius);
@@ -318,6 +326,7 @@
       <a href="#stack" data-hide>技术栈</a>
       <a href="#work">经历</a>
       <a href="#projects">项目</a>
+      <a href="#honors" data-hide>荣誉</a>
       <a href="#contact">联系</a>
       <button class="theme-btn" id="themeBtn" aria-label="切换主题">
         <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
@@ -387,7 +396,7 @@
         <div class="stack-cell">
           <h4>Backend</h4>
           <div class="pills">
-            <span class="pill key">Java 25</span><span class="pill key">Spring Boot 4.x</span>
+            <span class="pill key">Java 8 / 17 / 25</span><span class="pill key">Spring Boot</span>
             <span class="pill">MyBatis-Plus</span><span class="pill">MySQL</span><span class="pill">Redis</span>
             <span class="pill">Maven 多模块</span><span class="pill">MapStruct</span><span class="pill">JSQLParser</span>
             <span class="pill">OAuth 2.0</span><span class="pill">TTL 线程池</span><span class="pill">Spring @Async</span>
@@ -429,8 +438,8 @@
         <div class="job">
           <div class="job-top">
             <span class="job-title">全栈开发工程师</span>
-            <span class="job-org">麦腾科技</span>
-            <span class="job-date">2025.07 — 至今</span>
+            <span class="job-org">某跨境电商 SaaS 企业</span>
+            <span class="job-date">2025.08 — 至今</span>
           </div>
           <div class="job-sub">跨境电商 ERP / 业财一体化平台 · Java + Vue 双端</div>
           <ul>
@@ -459,7 +468,7 @@
             </div>
             <p class="desc">面向多平台卖家的 ERP 与业财一体化系统。16 个 Maven 业务模块，覆盖商品、订单、支付、广告、素材、营销、利润与报表，前端为独立的 Vue 3 管理端。</p>
             <div class="tags">
-              <span>Java 25</span><span>Spring Boot 4</span><span>MyBatis-Plus</span><span>MySQL</span><span>Redis</span><span>Vue 3</span><span>Element Plus</span>
+              <span>Java</span><span>Spring Boot</span><span>MyBatis-Plus</span><span>MySQL</span><span>Redis</span><span>Vue 3</span><span>Element Plus</span>
             </div>
           </div>
           <div class="col-r">
@@ -515,6 +524,57 @@
           <div class="tags"><span>STM32</span><span>CC2530</span><span>ZigBee</span><span>ESP8266</span><span>MQTT</span><span>阿里云</span></div>
         </article>
 
+        <article class="proj reveal">
+          <div class="proj-head">
+            <h3>ROS 室外无人车竞速</h3>
+            <span class="tag-kind">学科竞赛</span>
+          </div>
+          <p class="desc">第十八届全国大学生智能汽车竞赛室外 ROS 无人车竞速赛。团队从车体搭建做到室外赛道实车调试，由分赛区一路打进全国总决赛。</p>
+          <ul>
+            <li>竞赛平台基于 ROS，围绕传感器接入、定位与控制指令的联调展开。</li>
+            <li>室外场地实车跑圈，按赛道走向与光照条件反复整定参数。</li>
+            <li>成绩：全国总决赛三等奖、分赛区二等奖。</li>
+          </ul>
+          <div class="tags"><span>ROS</span><span>无人车</span><span>传感器</span><span>实车调试</span><span>C/C++</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HONORS -->
+  <section class="sec" id="honors">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">荣誉与证书</h2><span class="sec-rule"></span></div>
+      <div class="honors reveal">
+        <div class="honor">
+          <span class="y">2023</span>
+          <div>
+            <b>第十八届全国大学生智能汽车竞赛 · 全国总决赛 室外 ROS 无人车竞速赛 三等奖</b>
+            <span>中国自动化学会主办</span>
+          </div>
+        </div>
+        <div class="honor">
+          <span class="y">2023</span>
+          <div>
+            <b>第十八届全国大学生智能汽车竞赛 · 室外 ROS 无人车竞速赛 二等奖</b>
+            <span>中国自动化学会主办</span>
+          </div>
+        </div>
+        <div class="honor">
+          <span class="y">2023.11</span>
+          <div>
+            <b>杭州第 19 届亚运会、第 4 届亚残运会开闭幕式 纪念证书</b>
+            <span>杭州亚运会开闭幕式指挥中心</span>
+          </div>
+        </div>
+        <div class="honor">
+          <span class="y">2023.12</span>
+          <div>
+            <b>一星级志愿者（累计志愿服务 100 小时）</b>
+            <span>共青团浙江水利水电学院委员会 · 校青年志愿者协会</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -522,12 +582,12 @@
   <!-- EDU -->
   <section class="sec" id="edu">
     <div class="wrap">
-      <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">教育背景</h2><span class="sec-rule"></span></div>
+      <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">教育背景</h2><span class="sec-rule"></span></div>
       <div class="edu reveal">
         <span class="school">浙江水利水电学院</span>
         <span class="major">物联网工程 · 工学学士</span>
         <span class="date">2021.09 — 2025.06</span>
-        <div class="note">毕业设计《基于 ZigBee 的娱乐照明系统的设计与实现》，覆盖嵌入式组网、传感器融合与云平台接入；在校期间以 C 语言与单片机为主，毕业后转向 Java 与 Web 全栈。</div>
+        <div class="note">毕业设计《基于 ZigBee 的娱乐照明系统的设计与实现》，覆盖嵌入式组网、传感器融合与云平台接入。在校期间以 C 语言与单片机为主，参加过全国大学生智能汽车竞赛（ROS 无人车），毕业后转向 Java 与 Web 全栈。</div>
       </div>
     </div>
   </section>
