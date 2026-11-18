@@ -242,6 +242,15 @@
   .proj .tags span{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line-soft);padding:2px 8px;border-radius:4px}
   .proj.wide{display:grid;grid-template-columns:1.05fr .95fr;gap:36px}
   .proj.wide .col-r{display:flex;flex-direction:column}
+  .game-list{list-style:none;display:grid;gap:10px;margin:0}
+  .game-list li{padding:12px 14px;border:1px solid var(--line-soft);border-radius:10px;background:var(--bg-soft)}
+  .game-list li::before{display:none}
+  .game-list a{display:block;color:inherit}
+  .game-list a:hover b{color:var(--accent)}
+  .game-list b{display:block;color:var(--text);font-size:14.5px;font-weight:650}
+  .game-list span{display:block;margin-top:3px;font-size:12.6px;color:var(--muted);line-height:1.55}
+  .game-note{margin-top:12px;font-size:13px;color:var(--muted);line-height:1.65}
+  .game-note a{color:var(--accent);border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
 
   /* 教育 */
   .edu{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
@@ -388,7 +397,7 @@
       <div class="about">
         <div class="reveal">
           <p>我做的事集中在一条链路上：把平台侧的订单、库存和内容拉回来，在系统里算清楚，再以商家能看懂的方式呈现出去。这条链路横跨开放平台对接、业务建模、异步调度和前端交付，正好是<b>全栈</b>最能发挥的地方。</p>
-          <p>日常写 Java 与 Spring Boot，也写 Vue 3。业务模块多、平台差异大，所以更在意<strong>边界是否清楚</strong>：哪些字段由平台决定、哪些由本地兜底、失败之后如何重放。业余用 Python 做采集器、写作内核，以及一套可以在局域网里开打的卡牌，习惯先把状态落到库里，再谈界面。</p>
+          <p>日常写 Java 与 Spring Boot，也写 Vue 3。业务模块多、平台差异大，所以更在意<strong>边界是否清楚</strong>：哪些字段由平台决定、哪些由本地兜底、失败之后如何重放。业余用 Python 做采集器、写作内核，以及一套局域网小游戏，习惯先把状态落到库里，再谈界面。</p>
           <p>初中开始写代码，至今没断过。近两年在项目里结合 AI 辅助开发，清楚它擅长什么、边界在哪：用 <b>Agent CLI、MCP、Skill、Hook</b> 加速写代码、查文档与跑批量任务，架构设计与关键逻辑仍由自己把关。</p>
         </div>
         <ul class="focus reveal">
@@ -544,18 +553,37 @@
           </div>
         </article>
 
-        <article class="proj reveal">
-          <div class="proj-head">
-            <h3>四席协议</h3>
-            <span class="tag-kind">个人项目</span>
+        <article class="proj wide reveal">
+          <div>
+            <div class="proj-head">
+              <h3>小雨的游戏空间</h3>
+              <span class="tag-kind">个人项目 · 持续更新</span>
+            </div>
+            <p class="desc">朋友之间的局域网小游戏。一台主机开服，其余人装同一个客机套壳。玩法各自不同，联机方式是同一套，后面还会继续加。</p>
+            <ul>
+              <li>主机用电脑或手机打开游戏空间，选一款游戏。客机停在「等待主机选择游戏中」，选定后一起进入这款游戏自己的等待大厅。</li>
+              <li>正式开打前可以逐级返回。对局中主机可以暂时离开，也可以结束整局。一局结束，所有人回到选游戏页，屏幕恢复竖屏。</li>
+              <li>每款游戏仍是自己的规则、页面和素材。空间只负责把人送进去，结束时再送回来。新游戏加一个目录，再在索引里补一行。</li>
+            </ul>
+            <div class="tags"><span>Python</span><span>局域网联机</span><span>Android</span><span>WebView</span></div>
           </div>
-          <p class="desc">一个人独立做完的局域网卡牌，从规则到能开打的初代没有别人接手。2–4 人用手机出牌，一台电脑当主机。</p>
-          <ul>
-            <li><b>全程独立开发</b>：玩法、结算、服务端、对战页面、管理员页、牌面素材和 Android 壳都是自己完成的。</li>
-            <li>主机一个 Python 进程同时当页面和裁判。手牌只在自己手机上，账号和战绩落在 SQLite，管理员页只接受本机访问。</li>
-            <li>初代已经可以在局域网里打完整一局。后面加规则和牌，仍由自己维护。</li>
-          </ul>
-          <div class="tags"><span>Python</span><span>SQLite</span><span>局域网对战</span><span>Pillow</span></div>
+          <div class="col-r">
+            <ul class="game-list">
+              <li>
+                <a href="https://github.com/rain-rgb/wonder-fair" target="_blank" rel="noopener">
+                  <b>万象游园会</b>
+                  <span>2–6 人 · 掷骰抢地，金币最多的人赢</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rain-rgb/four-seat-protocol" target="_blank" rel="noopener">
+                  <b>四席协议</b>
+                  <span>2–4 人 · 手机出牌，体力归零就回宿舍</span>
+                </a>
+              </li>
+            </ul>
+            <p class="game-note">合集仓库：<a href="https://github.com/rain-rgb/xiaoyu-games" target="_blank" rel="noopener">xiaoyu-games</a>。之后的小游戏都从这里进。</p>
+          </div>
         </article>
 
         <article class="proj reveal">
